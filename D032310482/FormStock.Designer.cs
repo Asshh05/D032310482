@@ -169,6 +169,7 @@
             this.buttonDeleteStock.TabIndex = 13;
             this.buttonDeleteStock.Text = "Delete";
             this.buttonDeleteStock.UseVisualStyleBackColor = false;
+            this.buttonDeleteStock.Click += new System.EventHandler(this.buttonDeleteStock_Click);
             // 
             // FormStock
             // 

@@ -40,7 +40,6 @@
             this.buttonFormBook = new System.Windows.Forms.Button();
             this.buttonFormStock = new System.Windows.Forms.Button();
             this.dataGridViewAuthor = new System.Windows.Forms.DataGridView();
-            this.buttonLoadAuthor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,22 +155,11 @@
             this.dataGridViewAuthor.Size = new System.Drawing.Size(536, 150);
             this.dataGridViewAuthor.TabIndex = 11;
             // 
-            // buttonLoadAuthor
-            // 
-            this.buttonLoadAuthor.Location = new System.Drawing.Point(48, 210);
-            this.buttonLoadAuthor.Name = "buttonLoadAuthor";
-            this.buttonLoadAuthor.Size = new System.Drawing.Size(75, 23);
-            this.buttonLoadAuthor.TabIndex = 12;
-            this.buttonLoadAuthor.Text = "Load";
-            this.buttonLoadAuthor.UseVisualStyleBackColor = true;
-            this.buttonLoadAuthor.Click += new System.EventHandler(this.buttonLoadAuthor_Click);
-            // 
             // FormAuthor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1078, 569);
-            this.Controls.Add(this.buttonLoadAuthor);
             this.Controls.Add(this.dataGridViewAuthor);
             this.Controls.Add(this.buttonFormStock);
             this.Controls.Add(this.buttonFormBook);
@@ -206,6 +194,5 @@
         private System.Windows.Forms.Button buttonFormBook;
         private System.Windows.Forms.Button buttonFormStock;
         private System.Windows.Forms.DataGridView dataGridViewAuthor;
-        private System.Windows.Forms.Button buttonLoadAuthor;
     }
 }

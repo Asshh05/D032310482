@@ -13,10 +13,14 @@ namespace D032310482
 {
     public partial class FormBook : Form
     {
+        private SqlConnection connection;
+        private SqlDataAdapter dataAdapter;
+        private DataSet dataSet;
         public FormBook()
         {
             InitializeComponent();
-            LoadBookData();
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DITP2123\LABTEST2\D032310482\D032310482\ADMIRALBOOKSTOREDATABASE.MDF;Integrated Security=True";
+            connection = new SqlConnection(connectionString);   
 
         }
         private void FormBook_Load(object sender, EventArgs e)
@@ -25,16 +29,18 @@ namespace D032310482
         }
         private void LoadBookData()
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\AdmiralBookstoreDatabase.mdf;Integrated Security=True";
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DITP2123\LABTEST2\D032310482\D032310482\ADMIRALBOOKSTOREDATABASE.MDF;Integrated Security=True";
             string query = "SELECT * FROM Book";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                dataGridViewBook.DataSource = null;
-                dataGridViewBook.DataSource = dt;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, conn);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet, "Book");
+
+
+                dataGridViewBook.DataSource = dataSet.Tables["Book"];
+               
             }
         }
 
@@ -53,57 +59,35 @@ namespace D032310482
             stockForm.Show();
         }
 
-        private void buttonUpdateBook_Click_1(object sender, EventArgs e)
+        private bool ValidateInputs()
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\AdmiralBookstoreDatabase.mdf;Integrated Security=True";
-            string query = "UPDATE Book SET Title = @title, Publisher = @publisher, PublishDate = @date WHERE [ISBN-13] = @isbn";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            if (string.IsNullOrEmpty(textBoxISBN.Text) || string.IsNullOrEmpty(textBoxTitle.Text) ||
+                string.IsNullOrEmpty(textBoxPublisher.Text) || string.IsNullOrEmpty(textBoxPublishDate.Text))
             {
-                cmd.Parameters.AddWithValue("@title", textBoxTitle.Text);
-                cmd.Parameters.AddWithValue("@publisher", textBoxPublisher.Text);
-                cmd.Parameters.AddWithValue("@date", textBoxPublishDate.Text);
-                cmd.Parameters.AddWithValue("@isbn", textBoxISBN.Text);
-
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Data buku berjaya dikemaskini!");
-                    LoadBookData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ralat: " + ex.Message);
-                }
+                MessageBox.Show("Please fill in all fields.");
+                return false;
             }
+            return true;
         }
 
-        private void buttonAddBook_Click(object sender, EventArgs e)
+
+        private void buttonUpdateBook_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DITP2123\LABTEST2\D032310482\D032310482\ADMIRALBOOKSTOREDATABASE.MDF;Integrated Security=True";
-            string query = "INSERT INTO Book ([ISBN-13], Title, Publisher, PublishDate) VALUES (@isbn, @title, @publisher, @publishdate)";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            if (ValidateInputs())
             {
-                cmd.Parameters.AddWithValue("@isbn", textBoxISBN.Text);
-                cmd.Parameters.AddWithValue("@title", textBoxTitle.Text);
-                cmd.Parameters.AddWithValue("@publisher", textBoxPublisher.Text);
-                cmd.Parameters.AddWithValue("@publishdate", textBoxPublishDate.Text);   
+                string query = "UPDATE Book SET Title = @title, Publisher = @publisher, PublishDate = @date WHERE [ISBN-13] = @isbn";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@isbn", textBoxISBN.Text);
+                    command.Parameters.AddWithValue("@title", textBoxTitle.Text);
+                    command.Parameters.AddWithValue("@publisher", textBoxPublisher.Text);
+                    command.Parameters.AddWithValue("@date", textBoxPublishDate.Text);
 
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Data berjaya ditambah!");
-                    LoadBookData(); // Refresh the data grid view
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ralat: " + ex.Message);
-                }
+                LoadBookData(); // Refresh the data grid view
             }
         }
     }

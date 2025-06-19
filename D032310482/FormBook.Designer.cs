@@ -37,10 +37,10 @@
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
             this.textBoxPublishDate = new System.Windows.Forms.TextBox();
             this.dataGridViewBook = new System.Windows.Forms.DataGridView();
-            this.buttonAddBook = new System.Windows.Forms.Button();
             this.buttonUpdateBook = new System.Windows.Forms.Button();
             this.buttonDeleteBook = new System.Windows.Forms.Button();
             this.buttonFormStockBook = new System.Windows.Forms.Button();
+            this.buttonAddBook = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBook)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,18 +118,6 @@
             this.dataGridViewBook.Size = new System.Drawing.Size(600, 150);
             this.dataGridViewBook.TabIndex = 8;
             // 
-            // buttonAddBook
-            // 
-            this.buttonAddBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.buttonAddBook.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonAddBook.Location = new System.Drawing.Point(132, 357);
-            this.buttonAddBook.Name = "buttonAddBook";
-            this.buttonAddBook.Size = new System.Drawing.Size(75, 29);
-            this.buttonAddBook.TabIndex = 9;
-            this.buttonAddBook.Text = "Add";
-            this.buttonAddBook.UseVisualStyleBackColor = false;
-            this.buttonAddBook.Click += new System.EventHandler(this.buttonAddBook_Click);
-            // 
             // buttonUpdateBook
             // 
             this.buttonUpdateBook.BackColor = System.Drawing.Color.DeepSkyBlue;
@@ -140,7 +128,7 @@
             this.buttonUpdateBook.TabIndex = 10;
             this.buttonUpdateBook.Text = "Update";
             this.buttonUpdateBook.UseVisualStyleBackColor = false;
-            this.buttonUpdateBook.Click += new System.EventHandler(this.buttonUpdateBook_Click_1);
+            this.buttonUpdateBook.Click += new System.EventHandler(this.buttonUpdateBook_Click);
             // 
             // buttonDeleteBook
             // 
@@ -163,15 +151,26 @@
             this.buttonFormStockBook.UseVisualStyleBackColor = true;
             this.buttonFormStockBook.Click += new System.EventHandler(this.buttonFormStockBook_Click);
             // 
+            // buttonAddBook
+            // 
+            this.buttonAddBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.buttonAddBook.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonAddBook.Location = new System.Drawing.Point(165, 362);
+            this.buttonAddBook.Name = "buttonAddBook";
+            this.buttonAddBook.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddBook.TabIndex = 13;
+            this.buttonAddBook.Text = "Add";
+            this.buttonAddBook.UseVisualStyleBackColor = false;
+            // 
             // FormBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.buttonAddBook);
             this.Controls.Add(this.buttonFormStockBook);
             this.Controls.Add(this.buttonDeleteBook);
             this.Controls.Add(this.buttonUpdateBook);
-            this.Controls.Add(this.buttonAddBook);
             this.Controls.Add(this.dataGridViewBook);
             this.Controls.Add(this.textBoxPublishDate);
             this.Controls.Add(this.textBoxPublisher);
@@ -201,9 +200,9 @@
         private System.Windows.Forms.TextBox textBoxPublisher;
         private System.Windows.Forms.TextBox textBoxPublishDate;
         private System.Windows.Forms.DataGridView dataGridViewBook;
-        private System.Windows.Forms.Button buttonAddBook;
         private System.Windows.Forms.Button buttonUpdateBook;
         private System.Windows.Forms.Button buttonDeleteBook;
         private System.Windows.Forms.Button buttonFormStockBook;
+        private System.Windows.Forms.Button buttonAddBook;
     }
 }

@@ -8,17 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
+
 
 namespace D032310482
 {
     public partial class FormAuthor : Form
     {
+        private SqlConnection connection;
+        private SqlDataAdapter dataAdapter;
+        private DataSet dataSet;
+
         public FormAuthor()
         {
             InitializeComponent();
-            LoadAuthorData();
-            buttonLoadAuthor.Visible = false; // Hide the button initially
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DITP2123\LABTEST2\D032310482\D032310482\ADMIRALBOOKSTOREDATABASE.MDF;Integrated Security=True";
+            connection = new SqlConnection(connectionString);
 
         }
 
@@ -34,59 +38,46 @@ namespace D032310482
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                dataGridViewAuthor.DataSource = dt;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet, "Author");
+                dataGridViewAuthor.DataSource = dataSet.Tables["Author"];
             }
         }
 
-        private void buttonLoadAuthor_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DITP2123\LABTEST2\D032310482\D032310482\ADMIRALBOOKSTOREDATABASE.MDF;Integrated Security=True";
-                string query = "SELECT * FROM Author";
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dataGridViewAuthor.DataSource = dt;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DITP2123\LABTEST2\D032310482\D032310482\ADMIRALBOOKSTOREDATABASE.MDF;Integrated Security=True";
-            string query = "INSERT INTO Author (AuthorID, Name, BirthYear) VALUES (@Authorid, @name, @Byear)";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            if (ValidateInputs())
             {
-                cmd.Parameters.AddWithValue("@Authorid", textBoxAuthorID.Text);
-                cmd.Parameters.AddWithValue("@name", textBoxName.Text);
-                cmd.Parameters.AddWithValue("@Byear", textBoxBirthYear.Text);
+                string query = "INSERT INTO Author (AuthorID, Name, BirthYear) VALUES (@AuthorID, @Name, @BirthYear)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@AuthorID", textBoxAuthorID.Text);
+                    command.Parameters.AddWithValue("@Name", textBoxName.Text);
+                    command.Parameters.AddWithValue("@BirthYear", textBoxBirthYear.Text);
 
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Data berjaya ditambah!");
-                    LoadAuthorData(); // Refresh the data grid view
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ralat: " + ex.Message);
-                }
+
+                LoadAuthorData();
             }
         }
+
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrEmpty(textBoxAuthorID.Text) || string.IsNullOrEmpty(textBoxName.Text) ||
+                string.IsNullOrEmpty(textBoxBirthYear.Text))
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return false;
+            }
+            return true;
+        }
+
 
         private void buttonFormBook_Click(object sender, EventArgs e)
         {

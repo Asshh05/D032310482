@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LabelStock = new System.Windows.Forms.Label();
             this.LabelAuthorIDStock = new System.Windows.Forms.Label();
             this.LabelISBNStock = new System.Windows.Forms.Label();
@@ -42,7 +43,18 @@
             this.buttonAddStock = new System.Windows.Forms.Button();
             this.buttonUpdateStock = new System.Windows.Forms.Button();
             this.buttonDeleteStock = new System.Windows.Forms.Button();
+            this.admiralBookstoreDataSet = new D032310482.AdmiralBookstoreDataSet();
+            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stockTableAdapter = new D032310482.AdmiralBookstoreDataSetTableAdapters.StockTableAdapter();
+            this.tableAdapterManager = new D032310482.AdmiralBookstoreDataSetTableAdapters.TableAdapterManager();
+            this.stockIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.authorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iSBN13DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityInStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateRecordedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admiralBookstoreDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelStock
@@ -129,12 +141,20 @@
             // 
             // dataGridViewStock
             // 
+            this.dataGridViewStock.AutoGenerateColumns = false;
             this.dataGridViewStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.stockIDDataGridViewTextBoxColumn,
+            this.authorIDDataGridViewTextBoxColumn,
+            this.iSBN13DataGridViewTextBoxColumn,
+            this.quantityInStockDataGridViewTextBoxColumn,
+            this.dateRecordedDataGridViewTextBoxColumn});
+            this.dataGridViewStock.DataSource = this.stockBindingSource;
             this.dataGridViewStock.Location = new System.Drawing.Point(125, 22);
             this.dataGridViewStock.Name = "dataGridViewStock";
             this.dataGridViewStock.RowHeadersWidth = 51;
             this.dataGridViewStock.RowTemplate.Height = 24;
-            this.dataGridViewStock.Size = new System.Drawing.Size(646, 150);
+            this.dataGridViewStock.Size = new System.Drawing.Size(679, 150);
             this.dataGridViewStock.TabIndex = 10;
             // 
             // buttonAddStock
@@ -171,6 +191,68 @@
             this.buttonDeleteStock.UseVisualStyleBackColor = false;
             this.buttonDeleteStock.Click += new System.EventHandler(this.buttonDeleteStock_Click);
             // 
+            // admiralBookstoreDataSet
+            // 
+            this.admiralBookstoreDataSet.DataSetName = "AdmiralBookstoreDataSet";
+            this.admiralBookstoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // stockBindingSource
+            // 
+            this.stockBindingSource.DataMember = "Stock";
+            this.stockBindingSource.DataSource = this.admiralBookstoreDataSet;
+            // 
+            // stockTableAdapter
+            // 
+            this.stockTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AuthorTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BookTableAdapter = null;
+            this.tableAdapterManager.StockTableAdapter = this.stockTableAdapter;
+            this.tableAdapterManager.UpdateOrder = D032310482.AdmiralBookstoreDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // stockIDDataGridViewTextBoxColumn
+            // 
+            this.stockIDDataGridViewTextBoxColumn.DataPropertyName = "StockID";
+            this.stockIDDataGridViewTextBoxColumn.HeaderText = "StockID";
+            this.stockIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.stockIDDataGridViewTextBoxColumn.Name = "stockIDDataGridViewTextBoxColumn";
+            this.stockIDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // authorIDDataGridViewTextBoxColumn
+            // 
+            this.authorIDDataGridViewTextBoxColumn.DataPropertyName = "AuthorID";
+            this.authorIDDataGridViewTextBoxColumn.HeaderText = "AuthorID";
+            this.authorIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.authorIDDataGridViewTextBoxColumn.Name = "authorIDDataGridViewTextBoxColumn";
+            this.authorIDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // iSBN13DataGridViewTextBoxColumn
+            // 
+            this.iSBN13DataGridViewTextBoxColumn.DataPropertyName = "ISBN-13";
+            this.iSBN13DataGridViewTextBoxColumn.HeaderText = "ISBN-13";
+            this.iSBN13DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iSBN13DataGridViewTextBoxColumn.Name = "iSBN13DataGridViewTextBoxColumn";
+            this.iSBN13DataGridViewTextBoxColumn.Width = 125;
+            // 
+            // quantityInStockDataGridViewTextBoxColumn
+            // 
+            this.quantityInStockDataGridViewTextBoxColumn.DataPropertyName = "QuantityInStock";
+            this.quantityInStockDataGridViewTextBoxColumn.HeaderText = "QuantityInStock";
+            this.quantityInStockDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.quantityInStockDataGridViewTextBoxColumn.Name = "quantityInStockDataGridViewTextBoxColumn";
+            this.quantityInStockDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dateRecordedDataGridViewTextBoxColumn
+            // 
+            this.dateRecordedDataGridViewTextBoxColumn.DataPropertyName = "DateRecorded";
+            this.dateRecordedDataGridViewTextBoxColumn.HeaderText = "DateRecorded";
+            this.dateRecordedDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dateRecordedDataGridViewTextBoxColumn.Name = "dateRecordedDataGridViewTextBoxColumn";
+            this.dateRecordedDataGridViewTextBoxColumn.Width = 125;
+            // 
             // FormStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -192,7 +274,10 @@
             this.Controls.Add(this.LabelStock);
             this.Name = "FormStock";
             this.Text = "FormStock";
+            this.Load += new System.EventHandler(this.FormStock_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admiralBookstoreDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +299,14 @@
         private System.Windows.Forms.Button buttonAddStock;
         private System.Windows.Forms.Button buttonUpdateStock;
         private System.Windows.Forms.Button buttonDeleteStock;
+        private AdmiralBookstoreDataSet admiralBookstoreDataSet;
+        private System.Windows.Forms.BindingSource stockBindingSource;
+        private AdmiralBookstoreDataSetTableAdapters.StockTableAdapter stockTableAdapter;
+        private AdmiralBookstoreDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn authorIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iSBN13DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityInStockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateRecordedDataGridViewTextBoxColumn;
     }
 }

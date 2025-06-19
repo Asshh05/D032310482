@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LabelISBN = new System.Windows.Forms.Label();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.LabelPublisher = new System.Windows.Forms.Label();
@@ -41,7 +42,17 @@
             this.buttonDeleteBook = new System.Windows.Forms.Button();
             this.buttonFormStockBook = new System.Windows.Forms.Button();
             this.buttonAddBook = new System.Windows.Forms.Button();
+            this.admiralBookstoreDataSet = new D032310482.AdmiralBookstoreDataSet();
+            this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bookTableAdapter = new D032310482.AdmiralBookstoreDataSetTableAdapters.BookTableAdapter();
+            this.tableAdapterManager = new D032310482.AdmiralBookstoreDataSetTableAdapters.TableAdapterManager();
+            this.iSBN13DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publisherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publishDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBook)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admiralBookstoreDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelISBN
@@ -110,12 +121,19 @@
             // 
             // dataGridViewBook
             // 
+            this.dataGridViewBook.AutoGenerateColumns = false;
             this.dataGridViewBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBook.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iSBN13DataGridViewTextBoxColumn,
+            this.titleDataGridViewTextBoxColumn,
+            this.publisherDataGridViewTextBoxColumn,
+            this.publishDateDataGridViewTextBoxColumn});
+            this.dataGridViewBook.DataSource = this.bookBindingSource;
             this.dataGridViewBook.Location = new System.Drawing.Point(83, 12);
             this.dataGridViewBook.Name = "dataGridViewBook";
             this.dataGridViewBook.RowHeadersWidth = 51;
             this.dataGridViewBook.RowTemplate.Height = 24;
-            this.dataGridViewBook.Size = new System.Drawing.Size(600, 150);
+            this.dataGridViewBook.Size = new System.Drawing.Size(553, 150);
             this.dataGridViewBook.TabIndex = 8;
             // 
             // buttonUpdateBook
@@ -162,6 +180,60 @@
             this.buttonAddBook.Text = "Add";
             this.buttonAddBook.UseVisualStyleBackColor = false;
             // 
+            // admiralBookstoreDataSet
+            // 
+            this.admiralBookstoreDataSet.DataSetName = "AdmiralBookstoreDataSet";
+            this.admiralBookstoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bookBindingSource
+            // 
+            this.bookBindingSource.DataMember = "Book";
+            this.bookBindingSource.DataSource = this.admiralBookstoreDataSet;
+            // 
+            // bookTableAdapter
+            // 
+            this.bookTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AuthorTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BookTableAdapter = this.bookTableAdapter;
+            this.tableAdapterManager.StockTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = D032310482.AdmiralBookstoreDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // iSBN13DataGridViewTextBoxColumn
+            // 
+            this.iSBN13DataGridViewTextBoxColumn.DataPropertyName = "ISBN-13";
+            this.iSBN13DataGridViewTextBoxColumn.HeaderText = "ISBN-13";
+            this.iSBN13DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iSBN13DataGridViewTextBoxColumn.Name = "iSBN13DataGridViewTextBoxColumn";
+            this.iSBN13DataGridViewTextBoxColumn.Width = 125;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // publisherDataGridViewTextBoxColumn
+            // 
+            this.publisherDataGridViewTextBoxColumn.DataPropertyName = "Publisher";
+            this.publisherDataGridViewTextBoxColumn.HeaderText = "Publisher";
+            this.publisherDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.publisherDataGridViewTextBoxColumn.Name = "publisherDataGridViewTextBoxColumn";
+            this.publisherDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // publishDateDataGridViewTextBoxColumn
+            // 
+            this.publishDateDataGridViewTextBoxColumn.DataPropertyName = "PublishDate";
+            this.publishDateDataGridViewTextBoxColumn.HeaderText = "PublishDate";
+            this.publishDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.publishDateDataGridViewTextBoxColumn.Name = "publishDateDataGridViewTextBoxColumn";
+            this.publishDateDataGridViewTextBoxColumn.Width = 125;
+            // 
             // FormBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -184,6 +256,8 @@
             this.Text = "FormBook";
             this.Load += new System.EventHandler(this.FormBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBook)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admiralBookstoreDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +278,13 @@
         private System.Windows.Forms.Button buttonDeleteBook;
         private System.Windows.Forms.Button buttonFormStockBook;
         private System.Windows.Forms.Button buttonAddBook;
+        private AdmiralBookstoreDataSet admiralBookstoreDataSet;
+        private System.Windows.Forms.BindingSource bookBindingSource;
+        private AdmiralBookstoreDataSetTableAdapters.BookTableAdapter bookTableAdapter;
+        private AdmiralBookstoreDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iSBN13DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publisherDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publishDateDataGridViewTextBoxColumn;
     }
 }

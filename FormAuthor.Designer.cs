@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LabelAuthorID = new System.Windows.Forms.Label();
             this.LabelName = new System.Windows.Forms.Label();
             this.LabelBirthYear = new System.Windows.Forms.Label();
@@ -40,7 +41,16 @@
             this.buttonFormBook = new System.Windows.Forms.Button();
             this.buttonFormStock = new System.Windows.Forms.Button();
             this.dataGridViewAuthor = new System.Windows.Forms.DataGridView();
+            this.admiralBookstoreDataSet = new D032310482.AdmiralBookstoreDataSet();
+            this.authorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.authorTableAdapter = new D032310482.AdmiralBookstoreDataSetTableAdapters.AuthorTableAdapter();
+            this.tableAdapterManager = new D032310482.AdmiralBookstoreDataSetTableAdapters.TableAdapterManager();
+            this.authorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admiralBookstoreDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelAuthorID
@@ -147,13 +157,65 @@
             // 
             // dataGridViewAuthor
             // 
+            this.dataGridViewAuthor.AutoGenerateColumns = false;
             this.dataGridViewAuthor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAuthor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.authorIDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.birthYearDataGridViewTextBoxColumn});
+            this.dataGridViewAuthor.DataSource = this.authorBindingSource;
             this.dataGridViewAuthor.Location = new System.Drawing.Point(95, 50);
             this.dataGridViewAuthor.Name = "dataGridViewAuthor";
             this.dataGridViewAuthor.RowHeadersWidth = 51;
             this.dataGridViewAuthor.RowTemplate.Height = 24;
-            this.dataGridViewAuthor.Size = new System.Drawing.Size(536, 150);
+            this.dataGridViewAuthor.Size = new System.Drawing.Size(425, 150);
             this.dataGridViewAuthor.TabIndex = 11;
+            // 
+            // admiralBookstoreDataSet
+            // 
+            this.admiralBookstoreDataSet.DataSetName = "AdmiralBookstoreDataSet";
+            this.admiralBookstoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // authorBindingSource
+            // 
+            this.authorBindingSource.DataMember = "Author";
+            this.authorBindingSource.DataSource = this.admiralBookstoreDataSet;
+            // 
+            // authorTableAdapter
+            // 
+            this.authorTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AuthorTableAdapter = this.authorTableAdapter;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BookTableAdapter = null;
+            this.tableAdapterManager.StockTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = D032310482.AdmiralBookstoreDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // authorIDDataGridViewTextBoxColumn
+            // 
+            this.authorIDDataGridViewTextBoxColumn.DataPropertyName = "AuthorID";
+            this.authorIDDataGridViewTextBoxColumn.HeaderText = "AuthorID";
+            this.authorIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.authorIDDataGridViewTextBoxColumn.Name = "authorIDDataGridViewTextBoxColumn";
+            this.authorIDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // birthYearDataGridViewTextBoxColumn
+            // 
+            this.birthYearDataGridViewTextBoxColumn.DataPropertyName = "BirthYear";
+            this.birthYearDataGridViewTextBoxColumn.HeaderText = "BirthYear";
+            this.birthYearDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.birthYearDataGridViewTextBoxColumn.Name = "birthYearDataGridViewTextBoxColumn";
+            this.birthYearDataGridViewTextBoxColumn.Width = 125;
             // 
             // FormAuthor
             // 
@@ -174,7 +236,10 @@
             this.Controls.Add(this.LabelAuthorID);
             this.Name = "FormAuthor";
             this.Text = "FormAuthor";
+            this.Load += new System.EventHandler(this.FormAuthor_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admiralBookstoreDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.authorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +259,12 @@
         private System.Windows.Forms.Button buttonFormBook;
         private System.Windows.Forms.Button buttonFormStock;
         private System.Windows.Forms.DataGridView dataGridViewAuthor;
+        private AdmiralBookstoreDataSet admiralBookstoreDataSet;
+        private System.Windows.Forms.BindingSource authorBindingSource;
+        private AdmiralBookstoreDataSetTableAdapters.AuthorTableAdapter authorTableAdapter;
+        private AdmiralBookstoreDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridViewTextBoxColumn authorIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birthYearDataGridViewTextBoxColumn;
     }
 }

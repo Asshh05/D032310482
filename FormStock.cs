@@ -70,5 +70,12 @@ namespace D032310482
                 MessageBox.Show("Please enter a StockID to delete.");
             }
         }
+
+        private void FormStock_Load_1(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'admiralBookstoreDataSet.Stock' table. You can move, or remove it, as needed.
+            this.stockTableAdapter.Fill(this.admiralBookstoreDataSet.Stock);
+
+        }
     }
  }

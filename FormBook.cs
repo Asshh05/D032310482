@@ -25,6 +25,8 @@ namespace D032310482
         }
         private void FormBook_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'admiralBookstoreDataSet.Book' table. You can move, or remove it, as needed.
+            this.bookTableAdapter.Fill(this.admiralBookstoreDataSet.Book);
             LoadBookData();
         }
         private void LoadBookData()

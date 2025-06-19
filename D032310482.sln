@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35913.81 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D032310482", "D032310482\D032310482.csproj", "{F4D0FD19-6E45-48E2-86F2-0D2D37F0B430}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D032310482", "D032310482.csproj", "{F4D0FD19-6E45-48E2-86F2-0D2D37F0B430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B3C6C4F1-B2D3-45C6-8BC9-658B2B31C0DA}
+		SolutionGuid = {7DF9BA6C-F31F-4833-B417-4133C40FB05D}
 	EndGlobalSection
 EndGlobal

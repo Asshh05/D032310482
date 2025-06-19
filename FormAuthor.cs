@@ -90,6 +90,13 @@ namespace D032310482
             FormStock stockForm = new FormStock();
             stockForm.Show();
         }
+
+        private void FormAuthor_Load_1(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'admiralBookstoreDataSet.Author' table. You can move, or remove it, as needed.
+            this.authorTableAdapter.Fill(this.admiralBookstoreDataSet.Author);
+
+        }
     }
 }
 
